@@ -1,40 +1,99 @@
-.wrapper {
-  display: flex;
-  flex-direction: column;
+.allContainer {
+  width: 100%;
+  height: 100%;
+  position: relative;
 }
 
-.start{
-  margin-top: 50px;
-  align-self: center;
+.leftSideScreen{
+  width: 50vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.pokeNameContainer {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.pokeNameHidden {
+  display: none;
+}
+
+.pokeNameRevealed {
+  font-family: 'Press Start 2P', cursive;
+  text-transform: uppercase;
+  font-size: 2.5em;
+  text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.pokeSpriteContainer {
+  z-index: 3;
+  width: 500px;
+  margin-top: -50px;
+  position: relative;
+}
+
+.pokeSpriteHidden{
+  filter: brightness(0%);
+
+}
+
+.pokeSpriteRevealed{
+  filter: brightness(100%);
+
+}
+
+/* Put .ButtonTimerSwitcher at top of screen centered */
+.ButtonTimerSwitcher{
+  position: absolute;
+  top: 15px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.pokeButtonContainer{
   width: 300px;
   height: 100px;
-  font-size: 1.7em;
-  font-family: 'Press Start 2P', cursive;
-  color: white;
-  font-weight: bold;
-  background-color: red;
   border-color: white;
   border-radius: 10px;
 }
 
-.timer{ 
+.pokeButtonStyleOn{
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  background-color: red;
+  border-color: white;
+  border-width: 2px;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1.7em;
+  color: white;
+  font-weight: bold;
+}
+
+.timerVisible{
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   font-family: 'Press Start 2P', cursive;
   font-size: 3em;
+  margin-top: -550px;
 }
 
-.pokeWrap{
-  align-self: flex-start;
-  margin-top: -100px;
-  margin-left: 18vw;
+.pokeButtonStyleOff{
+  display: none;
 }
 
-.pokeImg {
-  width: 500px;
+.timerHidden{
+  display: none;
 }
-
-.pokeName {
-  font-family: 'Press Start 2P', cursive;
-  text-transform: uppercase;
-  margin-top: -50px;
-}
-

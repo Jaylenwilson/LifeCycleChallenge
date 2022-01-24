@@ -9,6 +9,11 @@ class PokeFetch extends Component {
       pokeInfo: '',
       pokeSprite: '',
       pokeName: '',
+      timer: 0,
+      timerActive: false,
+      pokemonActive: false,
+      timerInterval: null
+
     }
   }
 
@@ -29,15 +34,55 @@ class PokeFetch extends Component {
       .catch((err) => console.log(err))
   }
 
+  startTimer() {
+    this.fetchPokemon()
+    this.setState({
+      timerActive: true,
+      pokemonActive: false,
+      timer: 10
+    })
+    this.setState({
+      timerInterval: setInterval(() => {
+        if (this.state.timer > 0) {
+          this.setState({
+            timer: this.state.timer - 1,
+          })
+        } else {
+          this.setState({
+            pokemonActive: true,
+          })
+          this.setState({
+            timerActive: false,
+          })
+          clearInterval(this.state.timerInterval)
+        }
+      }, 1000)
+    })
+  }
+
   render() {
     return (
-      <div className={'wrapper'}>
-        <button className={'start'} onClick={() => this.fetchPokemon()}>Start!</button>
-        <h1 className={'timer'} >Timer Display</h1>
-        <div className={'pokeWrap'}>
-          <img className={'pokeImg'} src={this.state.pokeSprite} />
-          <h1 className={'pokeName'}>{this.state.pokeName}</h1>
+      <div className="allContainer">
+
+        <div className="leftSideScreen">
+          <div className="pokeSpriteContainer">
+            <img className={this.state.pokemonActive ? 'pokeSpriteRevealed' : 'pokeSpriteHidden'} src={this.state.pokeSprite} alt="pokemon sprite" />
+          </div>
+          <div className="pokeNameContainer">
+            <h1 className={this.state.pokemonActive ? 'pokeNameRevealed' : 'pokeNameHidden'}>{this.state.pokeName}</h1>
+          </div>
         </div>
+
+
+        <div className="ButtonTimerSwitcher">
+          <div className="pokeButtonContainer">
+            <button className={this.state.timerActive ? 'pokeButtonStyleOff' : 'pokeButtonStyleOn'} onClick={() => this.startTimer()}>Start</button>
+          </div>
+          <div className="timerContainer">
+            <h1 className={this.state.timerActive ? 'timerVisible' : 'timerHidden'}>{this.state.timer}</h1>
+          </div>
+        </div>
+
       </div>
     )
   }
